@@ -2,11 +2,11 @@ import fs from 'fs';
 import hre from 'hardhat';
 import path from 'path';
 
-const CONTRACT_FILE = 'Flink.sol';
-const SDPX_LICENSE = 'Apache-2.0';
-const OUT_DIR = path.join(__dirname, '..', 'dist');
+export const CONTRACT_FILE = 'Flink.sol';
+export const SDPX_LICENSE = 'Apache-2.0';
+export const OUT_DIR = path.join(__dirname, '..', 'dist');
 
-async function main() {
+export async function flattenWithMetadata(taskArgs: { file: string; license: string; output: string }) {
 	let flat = '';
 	const originalStdoutWrite = process.stdout.write.bind(process.stdout);
 
@@ -18,7 +18,7 @@ async function main() {
 	};
 
 	await hre.run('flatten', {
-		files: [path.join(__dirname, '..', 'contracts', CONTRACT_FILE)]
+		files: [path.join(__dirname, '..', 'contracts', taskArgs.file)]
 	});
 
 	process.stdout.write = originalStdoutWrite;
@@ -28,16 +28,16 @@ async function main() {
 		.replace(/\/\/ File .*/gi, '')
 		.replace(/\n\n\n\n/gi, '')
 		.split('\n');
-	outLines.splice(0, 0, `// SPDX-License-Identifier: ${SDPX_LICENSE}`);
+	outLines.splice(0, 0, `// SPDX-License-Identifier: ${taskArgs.license}`);
 	outLines.splice(1, 1);
 
 	const out = outLines.join('\n');
 
-	fs.mkdirSync(OUT_DIR, { recursive: true });
-	fs.writeFileSync(path.join(OUT_DIR, `Flat${CONTRACT_FILE}`), out);
+	fs.mkdirSync(taskArgs.output, { recursive: true });
+	fs.writeFileSync(path.join(taskArgs.output, `Flat${taskArgs.file}`), out);
 }
 
-void main().catch((error) => {
+void flattenWithMetadata({ file: CONTRACT_FILE, license: SDPX_LICENSE, output: OUT_DIR }).catch((error) => {
 	console.error(error);
 	process.exit(1);
 });
