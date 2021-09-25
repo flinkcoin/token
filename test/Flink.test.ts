@@ -1,16 +1,16 @@
-import type { Contract } from '@ethersproject/contracts';
 import chai, { expect } from 'chai';
 import { solidity } from 'ethereum-waffle';
 import { ethers, upgrades } from 'hardhat';
+import type { Flink } from '../typechain';
 
 chai.use(solidity);
 
 describe('Flink', () => {
-	let contract: Contract;
+	let contract: Flink;
 
 	beforeEach(async () => {
-		const Flink = await ethers.getContractFactory('Flink');
-		contract = await upgrades.deployProxy(Flink, [], { initializer: '__Flink_init', kind: 'uups' });
+		const FlinkContract = await ethers.getContractFactory('Flink');
+		contract = (await upgrades.deployProxy(FlinkContract, [], { initializer: '__Flink_init', kind: 'uups' })) as Flink;
 	});
 
 	describe('initialization', () => {
@@ -19,6 +19,25 @@ describe('Flink', () => {
 			const owner = await contract.owner();
 
 			expect(owner).to.equal(address);
+		});
+	});
+
+	describe('ownable', () => {
+		it('should swap ownership', async () => {
+			const [, { address: addressAlternative }] = await ethers.getSigners();
+
+			await contract.transferOwnership(addressAlternative);
+			const owner = await contract.owner();
+
+			expect(owner).to.equal(addressAlternative);
+		});
+
+		it('should fail to swap ownership', async () => {
+			const [, accountAlternative] = await ethers.getSigners();
+
+			await expect(contract.connect(accountAlternative).transferOwnership(accountAlternative.address)).to.be.revertedWith(
+				'Ownable: caller is not the owner'
+			);
 		});
 	});
 });
