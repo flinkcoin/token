@@ -1,6 +1,8 @@
+import '@nomiclabs/hardhat-ethers';
 import '@nomiclabs/hardhat-solhint';
 import '@nomiclabs/hardhat-waffle';
 import '@openzeppelin/hardhat-upgrades';
+import '@typechain/hardhat';
 import 'hardhat-gas-reporter';
 import 'hardhat-tracer';
 import type { HardhatUserConfig } from 'hardhat/config';
@@ -18,9 +20,10 @@ const config: HardhatUserConfig = {
 	defaultNetwork: 'hardhat',
 	networks: {
 		hardhat: {
-			forking: {
-				url: 'https://bsc-dataseed.binance.org'
-			}
+			// forking: {
+			// 	url: 'https://bsc-dataseed.binance.org',
+			// 	blockNumber: 11224630
+			// }
 		}
 	},
 	gasReporter: {
