@@ -10,7 +10,7 @@ describe('Flink', () => {
 
 	beforeEach(async () => {
 		const Flink = await ethers.getContractFactory('Flink');
-		contract = await upgrades.deployProxy(Flink, [], { initializer: '__Flink_init' });
+		contract = await upgrades.deployProxy(Flink, [], { initializer: '__Flink_init', kind: 'uups' });
 	});
 
 	describe('initialization', () => {
