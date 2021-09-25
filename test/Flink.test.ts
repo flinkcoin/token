@@ -1,7 +1,7 @@
 import type { Contract } from '@ethersproject/contracts';
 import chai from 'chai';
 import { solidity } from 'ethereum-waffle';
-import { ethers } from 'hardhat';
+import { ethers, upgrades } from 'hardhat';
 
 chai.use(solidity);
 
@@ -11,6 +11,6 @@ describe('Maribor', () => {
 
 	beforeEach(async () => {
 		const Flink = await ethers.getContractFactory('Flink');
-		contract = await Flink.deploy();
+		contract = await upgrades.deployProxy(Flink, [], { initializer: '__Flink_init' });
 	});
 });
