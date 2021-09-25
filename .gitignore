@@ -217,8 +217,13 @@ typings
 
 # End of https://www.toptal.com/developers/gitignore/api/solidity,soliditytruffle,typings,node
 
-contracts/
+.openzeppelin/
+
+cache/
 recommendations-already-shown.json
 solidity-files-cache.json
 validations.json
+
 coverage.json
+
+!yarn.lock
