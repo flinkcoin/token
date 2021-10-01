@@ -1,4 +1,5 @@
 import '@nomiclabs/hardhat-ethers';
+import '@nomiclabs/hardhat-etherscan';
 import '@nomiclabs/hardhat-solhint';
 import '@nomiclabs/hardhat-waffle';
 import '@openzeppelin/hardhat-upgrades';
@@ -7,7 +8,7 @@ import 'hardhat-gas-reporter';
 import 'hardhat-tracer';
 import type { HardhatUserConfig } from 'hardhat/config';
 import 'solidity-coverage';
-import { privateKey } from './config';
+import { etherscanApi, privateKey } from './config';
 
 const config: HardhatUserConfig = {
 	solidity: {
@@ -38,6 +39,9 @@ const config: HardhatUserConfig = {
 			gasPrice: 20000000000,
 			accounts: [`0x${privateKey}`]
 		}
+	},
+	etherscan: {
+		apiKey: etherscanApi
 	},
 	gasReporter: {
 		excludeContracts: ['mocks/'],

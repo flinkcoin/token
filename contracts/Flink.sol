@@ -26,8 +26,8 @@ contract Flink is Initializable, ERC20Upgradeable, ERC20BurnableUpgradeable, Own
 		_mint(to, amount);
 	}
 
-    /**
-     * @dev More information about this can be found at https://docs.openzeppelin.com/contracts/4.x/api/proxy#UUPSUpgradeable
-     */
+	/**
+	 * @dev More information about this can be found at https://docs.openzeppelin.com/contracts/4.x/api/proxy#UUPSUpgradeable
+	 */
 	function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}
 }
