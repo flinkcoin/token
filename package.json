@@ -7,8 +7,7 @@
     "compile": "hardhat compile",
     "test": "yarn compile --network hardhat && hardhat test --network hardhat",
     "test:coverage": "yarn compile --network hardhat && hardhat coverage --network hardhat",
-    "flatten": "hardhat run scripts/flatten.ts",
-    "deploy": "hardhat run scripts/deploy.ts"
+    "flatten": "hardhat run scripts/flatten.ts"
   },
   "dependencies": {},
   "devDependencies": {

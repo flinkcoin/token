@@ -1,6 +1,6 @@
 import chai, { expect } from 'chai';
 import { solidity } from 'ethereum-waffle';
-import { ethers, upgrades } from 'hardhat';
+import { ethers } from 'hardhat';
 import type { Flink } from '../typechain';
 
 chai.use(solidity);
@@ -10,7 +10,7 @@ describe('Flink', () => {
 
 	beforeEach(async () => {
 		const FlinkContract = await ethers.getContractFactory('Flink');
-		contract = (await upgrades.deployProxy(FlinkContract, [], { initializer: '__Flink_init', kind: 'uups' })) as Flink;
+		contract = (await FlinkContract.deploy()) as Flink;
 	});
 
 	describe('initialization', () => {

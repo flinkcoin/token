@@ -13,82 +13,55 @@ import * as Contracts from ".";
 declare module "hardhat/types/runtime" {
   interface HardhatEthersHelpers extends HardhatEthersHelpersBase {
     getContractFactory(
-      name: "OwnableUpgradeable",
+      name: "Ownable",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.OwnableUpgradeable__factory>;
+    ): Promise<Contracts.Ownable__factory>;
     getContractFactory(
-      name: "IBeaconUpgradeable",
+      name: "ERC20",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IBeaconUpgradeable__factory>;
+    ): Promise<Contracts.ERC20__factory>;
     getContractFactory(
-      name: "ERC1967UpgradeUpgradeable",
+      name: "ERC20Burnable",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ERC1967UpgradeUpgradeable__factory>;
+    ): Promise<Contracts.ERC20Burnable__factory>;
     getContractFactory(
-      name: "UUPSUpgradeable",
+      name: "IERC20Metadata",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.UUPSUpgradeable__factory>;
+    ): Promise<Contracts.IERC20Metadata__factory>;
     getContractFactory(
-      name: "ERC20Upgradeable",
+      name: "IERC20",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ERC20Upgradeable__factory>;
-    getContractFactory(
-      name: "ERC20BurnableUpgradeable",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ERC20BurnableUpgradeable__factory>;
-    getContractFactory(
-      name: "IERC20MetadataUpgradeable",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC20MetadataUpgradeable__factory>;
-    getContractFactory(
-      name: "IERC20Upgradeable",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC20Upgradeable__factory>;
+    ): Promise<Contracts.IERC20__factory>;
     getContractFactory(
       name: "Flink",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Flink__factory>;
 
     getContractAt(
-      name: "OwnableUpgradeable",
+      name: "Ownable",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.OwnableUpgradeable>;
+    ): Promise<Contracts.Ownable>;
     getContractAt(
-      name: "IBeaconUpgradeable",
+      name: "ERC20",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IBeaconUpgradeable>;
+    ): Promise<Contracts.ERC20>;
     getContractAt(
-      name: "ERC1967UpgradeUpgradeable",
+      name: "ERC20Burnable",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ERC1967UpgradeUpgradeable>;
+    ): Promise<Contracts.ERC20Burnable>;
     getContractAt(
-      name: "UUPSUpgradeable",
+      name: "IERC20Metadata",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.UUPSUpgradeable>;
+    ): Promise<Contracts.IERC20Metadata>;
     getContractAt(
-      name: "ERC20Upgradeable",
+      name: "IERC20",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ERC20Upgradeable>;
-    getContractAt(
-      name: "ERC20BurnableUpgradeable",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.ERC20BurnableUpgradeable>;
-    getContractAt(
-      name: "IERC20MetadataUpgradeable",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.IERC20MetadataUpgradeable>;
-    getContractAt(
-      name: "IERC20Upgradeable",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.IERC20Upgradeable>;
+    ): Promise<Contracts.IERC20>;
     getContractAt(
       name: "Flink",
       address: string,
