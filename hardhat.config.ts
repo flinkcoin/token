@@ -8,7 +8,7 @@ import 'hardhat-gas-reporter';
 import 'hardhat-tracer';
 import type { HardhatUserConfig } from 'hardhat/config';
 import 'solidity-coverage';
-import { etherscanApi, privateKey } from './config';
+import { coinMarketCapApi, etherscanApi, privateKey } from './config';
 
 const config: HardhatUserConfig = {
 	solidity: {
@@ -46,7 +46,9 @@ const config: HardhatUserConfig = {
 	gasReporter: {
 		excludeContracts: ['mocks/'],
 		showTimeSpent: true,
-		currency: 'EUR'
+		currency: 'EUR',
+		gasPrice: 150,
+		coinmarketcap: coinMarketCapApi
 	}
 };
 
